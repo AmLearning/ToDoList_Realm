@@ -15,7 +15,8 @@
 		C49A0F3D207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F3C207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift */; };
 		C49A0F3F207DC3080015D0EA /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */; };
 		C49A0F42207DC36E0015D0EA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F41207DC36E0015D0EA /* SearchBar.swift */; };
-		C49A0F49207F11B30015D0EA /* ToDoList_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F47207F11B30015D0EA /* ToDoList_CoreData.xcdatamodeld */; };
+		C49A0F512083056E0015D0EA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F502083056E0015D0EA /* Category.swift */; };
+		C49A0F532083E2A50015D0EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F522083E2A50015D0EA /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 		C49A0F3C207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewControllerTableViewController.swift; sourceTree = "<group>"; };
 		C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C49A0F41207DC36E0015D0EA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		C49A0F48207F11B30015D0EA /* ToDoList_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoList_CoreData.xcdatamodel; sourceTree = "<group>"; };
+		C49A0F502083056E0015D0EA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		C49A0F522083E2A50015D0EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CAEFE849F9D1226D0217117C /* Pods-ToDoList_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm.debug.xcconfig"; sourceTree = "<group>"; };
 		EA60D55F16D2EE3BC01F5135 /* Pods-ToDoList_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +126,8 @@
 		C49A0F3B207DBF640015D0EA /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				C49A0F47207F11B30015D0EA /* ToDoList_CoreData.xcdatamodeld */,
+				C49A0F502083056E0015D0EA /* Category.swift */,
+				C49A0F522083E2A50015D0EA /* Item.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -246,8 +249,9 @@
 				C49A0F3D207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift in Sources */,
 				C49A0F42207DC36E0015D0EA /* SearchBar.swift in Sources */,
 				C49A0F3F207DC3080015D0EA /* CategoryViewController.swift in Sources */,
-				C49A0F49207F11B30015D0EA /* ToDoList_CoreData.xcdatamodeld in Sources */,
 				C49A0F27207DBED70015D0EA /* AppDelegate.swift in Sources */,
+				C49A0F532083E2A50015D0EA /* Item.swift in Sources */,
+				C49A0F512083056E0015D0EA /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +399,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4RL87ARE8P;
 				INFOPLIST_FILE = ToDoList_Realm/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.ToDoList-Realm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -411,7 +418,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4RL87ARE8P;
 				INFOPLIST_FILE = ToDoList_Realm/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.ToDoList-Realm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -441,19 +451,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C49A0F47207F11B30015D0EA /* ToDoList_CoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C49A0F48207F11B30015D0EA /* ToDoList_CoreData.xcdatamodel */,
-			);
-			currentVersion = C49A0F48207F11B30015D0EA /* ToDoList_CoreData.xcdatamodel */;
-			path = ToDoList_CoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C49A0F1B207DBED70015D0EA /* Project object */;
 }

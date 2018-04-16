@@ -7,12 +7,15 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class ToDoListViewController: UITableViewController {
     
-    //    var listArray = [String]()  //array to hold cell data (ToDos)
-    var itemArray = [Item]()       //change to have custom item so we can associate properties with it, in this case, the checkmark.  since we reuse cells, it appears in the reused cell if in top cell, so we want to be able to associate it with the data, not the cell.
+    //Realm data holding container of type Results
+    var toDoItems : Results<Item>?
+    
+    //1. instantiate Realm object
+    let realm = try! Realm()
     
     
     //Property observer didSet triggers only if the value of selectedCategory was set. Since this property is called from CategoryVC's prepare for segue, it happens first.  So, we put loadItems here instead of viewDidLoad which ensure that it only loads if selectedCategory received an update.
@@ -22,10 +25,7 @@ class ToDoListViewController: UITableViewController {
         }
     }
     
-    //1. To use COREDATA to store data, we reference a context in AppDelegate to add/save/load an Item
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
+   
     //oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,23 +43,36 @@ class ToDoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Here, we cast to the CustomMessageCell type because using the custom cell....since default prototype, no cast as in Chat.
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
-        let item = itemArray[indexPath.row]
-        
-        cell.textLabel?.text = item.title
-        
-        //check hidden/shown depending on state of .done property
-        if item.done == true {
-            cell.accessoryType = .checkmark
+        if let item = toDoItems?[indexPath.row] {
+            cell.textLabel?.text = item.title
+            
+            if item.done == true {
+                cell.accessoryType = .checkmark
+            }else {
+                cell.accessoryType = .none
+            }
         }else {
-            cell.accessoryType = .none
+            cell.textLabel?.text = "No Items Added"
         }
+        
+        
+//        let item = toDoItems?[indexPath.row]
+//
+//        cell.textLabel?.text = item?.title ?? "There are no items yet"
+//
+//        //check hidden/shown depending on state of .done property
+//        if (item?.done) == true {
+//            cell.accessoryType = .checkmark
+//        }else {
+//            cell.accessoryType = .none
+//        }
         
         return cell
     }//end cellForRowAt
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
+        return toDoItems?.count ?? 1
     }
     
     
@@ -68,11 +81,23 @@ class ToDoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)    //this makes highlight go away after clicking on cell
         
-        //Toggle .done in Item (checkmark)
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        //Toggle .done in Item (checkmark).  When updating Realm data, must be within write{}
+        if let item = toDoItems {
+            do {
+                try realm.write {
+                    item[indexPath.row].done = !item[indexPath.row].done
+                    
+                    //instead of toggle, DELETE:
+//                    realm.delete(item[indexPath.row])
+                }
+            } catch {
+                print ("Error saving done status, \(error)")
+            }
+        }
+        //        toDoItems[indexPath.row].done = !toDoItems[indexPath.row].done    //see above..Realm needs write{}
+//        saveItems()
         
-        saveItems()
-        
+        tableView.reloadData()  //since no longer using save()
         
     }//end didSelectRowAt
     
@@ -92,21 +117,33 @@ class ToDoListViewController: UITableViewController {
         }//end addTextField
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            if let userInput = textField.text {
-                //                var newItem = Item()          //replaced below with Item(<#T##NSManagedObjectContext#>)
+//            if let userInput = textField.text {
+//                let newItem = Item()
+//                newItem.title = userInput
+            
+                //for realm, also need to specify that the cat
+                if let currentCategory = self.selectedCategory {
+                    do{
+                        try self.realm.write {
+                            let newItem = Item()
+                            newItem.title = textField.text!
+                    
+                            //in order to update the items LIST<> in the current Category, need to append it.  However, this can not be modified outside of a write (save) transaction, so have to move SAVE code here.
+                            currentCategory.items.append(newItem)
+
+                            self.tableView.reloadData()
+                        }
+                    }catch {
+                        print("Error saving item: \(error)")
+                    }
+                    
+                }
                 
-                let newItem = Item(context: self.context)
-                newItem.title = userInput   //have to set all Attributes since no default values when using CoreData
-                newItem.done = false
-                newItem.withParentCategory = self.selectedCategory  //associates the item with the category selected to get here.  .withParentCategory is the RELATIONSHIP establisehd in CoreData file.
+            
                 
-                self.itemArray.append(newItem)
-                self.tableView.reloadData()
-                self.saveItems()
-                
-            }else {
-                print ("nothing entered")
-            }//end if-else
+//            }else {
+//                print ("nothing entered")
+//            }//end if-else
             
         }//end action
         
@@ -120,40 +157,26 @@ class ToDoListViewController: UITableViewController {
     
     
     
-    //MARK: - SAVE data via CoreData
-    func saveItems(){
-        
-        do{
-            try context.save()
-        }catch {
-            print("Error saving context: \(error)")
-        }
-        
-        tableView.reloadData()
-    }//end save data
+    //MARK: - SAVE  !!!See comments in AddNewItem() moved .write function there
+//    func saveItems(item : Item){
+//        do{
+//            try realm.write {
+//                realm.add(item)
+//        }
+//    }catch {
+//    print("Error saving item: \(error)")
+//    }
+//
+//        tableView.reloadData()
+//    }//end save data
     
     
     
     //MARK: - LOAD data saved via CoreData
     func loadItems(){
         
-        let request: NSFetchRequest <Item> = Item.fetchRequest()
-        
-        //      this part is to sort through data and only load items in selectedCategory
-        if let category = selectedCategory {
-            let loadPredicate = NSPredicate(format: "withParentCategory.name MATCHES %@", category.name!)
-            request.predicate = loadPredicate
-            
-            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        }//end optional binding
-        
-        do{
-            itemArray = try context.fetch(request)
-        }catch{
-            print ("Error loading context: \(error)")
-        }
-        
-        
+        toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending : true)
+
         tableView.reloadData()
     }//end load data
     
