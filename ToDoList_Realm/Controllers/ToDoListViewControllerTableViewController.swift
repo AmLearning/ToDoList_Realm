@@ -31,7 +31,7 @@ class ToDoListViewController: UITableViewController {
         super.viewDidLoad()
         //since using TableViewController, no need to set self as delegate for TableViewDelegate and TableViewDataSource
         
-        //        print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+//                print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         //        loadItems()   //moved to didSet observer.
     }
     //oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -121,12 +121,15 @@ class ToDoListViewController: UITableViewController {
 //                let newItem = Item()
 //                newItem.title = userInput
             
-                //for realm, also need to specify that the cat
+                //for realm, also need to specify that the category isn't nil
                 if let currentCategory = self.selectedCategory {
                     do{
                         try self.realm.write {
                             let newItem = Item()
                             newItem.title = textField.text!
+                            
+                            //angela's challenge, sort by date created, so adding this
+                            newItem.dateCreated = NSDate()
                     
                             //in order to update the items LIST<> in the current Category, need to append it.  However, this can not be modified outside of a write (save) transaction, so have to move SAVE code here.
                             currentCategory.items.append(newItem)

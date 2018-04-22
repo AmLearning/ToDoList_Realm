@@ -14,9 +14,9 @@
 		C49A0F31207DBED90015D0EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49A0F2F207DBED90015D0EA /* LaunchScreen.storyboard */; };
 		C49A0F3D207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F3C207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift */; };
 		C49A0F3F207DC3080015D0EA /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */; };
-		C49A0F42207DC36E0015D0EA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F41207DC36E0015D0EA /* SearchBar.swift */; };
 		C49A0F512083056E0015D0EA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F502083056E0015D0EA /* Category.swift */; };
 		C49A0F532083E2A50015D0EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F522083E2A50015D0EA /* Item.swift */; };
+		C49A0F572086F4CC0015D0EA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F562086F4CC0015D0EA /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,9 @@
 		C49A0F32207DBED90015D0EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49A0F3C207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewControllerTableViewController.swift; sourceTree = "<group>"; };
 		C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		C49A0F41207DC36E0015D0EA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C49A0F502083056E0015D0EA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		C49A0F522083E2A50015D0EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		C49A0F562086F4CC0015D0EA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		CAEFE849F9D1226D0217117C /* Pods-ToDoList_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm.debug.xcconfig"; sourceTree = "<group>"; };
 		EA60D55F16D2EE3BC01F5135 /* Pods-ToDoList_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,7 +101,7 @@
 				C49A0F26207DBED70015D0EA /* AppDelegate.swift */,
 				C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */,
 				C49A0F3C207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift */,
-				C49A0F41207DC36E0015D0EA /* SearchBar.swift */,
+				C49A0F562086F4CC0015D0EA /* SearchBar.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,11 +247,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C49A0F3D207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift in Sources */,
-				C49A0F42207DC36E0015D0EA /* SearchBar.swift in Sources */,
 				C49A0F3F207DC3080015D0EA /* CategoryViewController.swift in Sources */,
 				C49A0F27207DBED70015D0EA /* AppDelegate.swift in Sources */,
 				C49A0F532083E2A50015D0EA /* Item.swift in Sources */,
 				C49A0F512083056E0015D0EA /* Category.swift in Sources */,
+				C49A0F572086F4CC0015D0EA /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

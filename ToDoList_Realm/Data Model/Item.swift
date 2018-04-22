@@ -20,6 +20,10 @@ class Item : Object {
     @objc dynamic var title = ""
     @objc dynamic var done = false
     
+    //Challenge to sort by date created instead of title, so creating property.  in TodDoList instantiate upon Item creation
+    @objc dynamic var  dateCreated : NSDate?
+
+    
     //inverse relationship to item:
     var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
     

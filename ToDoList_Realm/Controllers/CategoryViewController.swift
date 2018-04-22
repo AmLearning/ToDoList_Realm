@@ -118,7 +118,7 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - save data to Realm
     func saveCategories(category: Category){
-        //this is how you save data into Realm
+        //this is how you save data into Realm. 
         do{
             try realm.write {
                 realm.add(category)
