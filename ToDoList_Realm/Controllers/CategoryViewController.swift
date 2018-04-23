@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class CategoryViewController: UITableViewController {
     
@@ -49,8 +50,14 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! SwipeTableViewCell
         let category = categories?[indexPath.row]
+        
+        //for swipe, cell delegate is self
+        cell.delegate = self
+        
+        //tweek cell to look better
+        tableView.rowHeight = 80
         
         //using Nil Coalescing Operator:
         cell.textLabel?.text = category?.name ?? "No Categories Added Yet"
@@ -139,4 +146,7 @@ class CategoryViewController: UITableViewController {
     
     
     
-}
+}//end class
+
+
+

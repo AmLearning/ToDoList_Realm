@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B822B7E82984A55E10734310 /* Pods_ToDoList_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7A0E5F242C17B0928F14FB /* Pods_ToDoList_Realm.framework */; };
+		C41C1268208D60A5006A457A /* SwipeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C1267208D60A5006A457A /* SwipeExtension.swift */; };
 		C49A0F27207DBED70015D0EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F26207DBED70015D0EA /* AppDelegate.swift */; };
 		C49A0F2C207DBED70015D0EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49A0F2A207DBED70015D0EA /* Main.storyboard */; };
 		C49A0F2E207DBED90015D0EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C49A0F2D207DBED90015D0EA /* Assets.xcassets */; };
@@ -16,11 +17,12 @@
 		C49A0F3F207DC3080015D0EA /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */; };
 		C49A0F512083056E0015D0EA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F502083056E0015D0EA /* Category.swift */; };
 		C49A0F532083E2A50015D0EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F522083E2A50015D0EA /* Item.swift */; };
-		C49A0F572086F4CC0015D0EA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F562086F4CC0015D0EA /* SearchBar.swift */; };
+		C49A0F572086F4CC0015D0EA /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0F562086F4CC0015D0EA /* SearchBarExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5F7A0E5F242C17B0928F14FB /* Pods_ToDoList_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoList_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C41C1267208D60A5006A457A /* SwipeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeExtension.swift; sourceTree = "<group>"; };
 		C49A0F23207DBED70015D0EA /* ToDoList_Realm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList_Realm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49A0F26207DBED70015D0EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C49A0F2B207DBED70015D0EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -31,7 +33,7 @@
 		C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C49A0F502083056E0015D0EA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		C49A0F522083E2A50015D0EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		C49A0F562086F4CC0015D0EA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C49A0F562086F4CC0015D0EA /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		CAEFE849F9D1226D0217117C /* Pods-ToDoList_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm.debug.xcconfig"; sourceTree = "<group>"; };
 		EA60D55F16D2EE3BC01F5135 /* Pods-ToDoList_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,7 +103,8 @@
 				C49A0F26207DBED70015D0EA /* AppDelegate.swift */,
 				C49A0F3E207DC3080015D0EA /* CategoryViewController.swift */,
 				C49A0F3C207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift */,
-				C49A0F562086F4CC0015D0EA /* SearchBar.swift */,
+				C49A0F562086F4CC0015D0EA /* SearchBarExtension.swift */,
+				C41C1267208D60A5006A457A /* SwipeExtension.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -228,11 +231,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ToDoList_Realm/Pods-ToDoList_Realm-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -249,9 +254,10 @@
 				C49A0F3D207DC2E80015D0EA /* ToDoListViewControllerTableViewController.swift in Sources */,
 				C49A0F3F207DC3080015D0EA /* CategoryViewController.swift in Sources */,
 				C49A0F27207DBED70015D0EA /* AppDelegate.swift in Sources */,
+				C41C1268208D60A5006A457A /* SwipeExtension.swift in Sources */,
 				C49A0F532083E2A50015D0EA /* Item.swift in Sources */,
 				C49A0F512083056E0015D0EA /* Category.swift in Sources */,
-				C49A0F572086F4CC0015D0EA /* SearchBar.swift in Sources */,
+				C49A0F572086F4CC0015D0EA /* SearchBarExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +306,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -360,7 +366,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -396,6 +402,7 @@
 			baseConfigurationReference = CAEFE849F9D1226D0217117C /* Pods-ToDoList_Realm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4RL87ARE8P;
 				INFOPLIST_FILE = ToDoList_Realm/Info.plist;
@@ -415,6 +422,7 @@
 			baseConfigurationReference = EA60D55F16D2EE3BC01F5135 /* Pods-ToDoList_Realm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4RL87ARE8P;
 				INFOPLIST_FILE = ToDoList_Realm/Info.plist;
